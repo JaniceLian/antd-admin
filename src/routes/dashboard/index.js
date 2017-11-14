@@ -10,7 +10,7 @@ import styles from './index.less'
 const bodyStyle = {
   bodyStyle: {
     height: 432,
-    background: '#fff',
+    // background: '#fff',
   },
 }
 

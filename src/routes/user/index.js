@@ -10,7 +10,7 @@ import Filter from './Filter'
 import Modal from './Modal'
 
 
-const User = ({ location, dispatch, user, loading }) => {
+const User = ({ location, dispatch, user, loading, darkTheme }) => {
   location.query = queryString.parse(location.search)
   const { list, pagination, currentItem, modalVisible, modalType, isMotion, selectedRowKeys } = user
   const { pageSize } = pagination

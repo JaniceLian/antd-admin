@@ -1,5 +1,8 @@
 @import "~themes/vars";
 
+@sider-menu-color: #96a2b4;
+@sider-menu-selected-color: #fb9678;
+
 .layout {
   position: relative;
   height: 100vh;
@@ -51,6 +54,9 @@
               }
             }
           }
+          .ant-menu-item-selected > a > i {
+            color: @text-color-title;
+          }
         }
       }
     }
@@ -62,14 +68,14 @@
 
   .sider {
     width: 224px;
-    background: #3e3e3e;
+    background: #353c48;
     position: absolute;
     overflow: visible;
     padding-bottom: 24px;
     height: 100vh;
     transition: @transition-ease-out;
     box-shadow: @shadow-1;
-    color: #999;
+    color: @sider-menu-color;
 
     &.light {
       background: #fff;
@@ -137,7 +143,8 @@
     :global {
       .ant-menu-dark,
       .ant-menu-dark .ant-menu-sub {
-        color: #999;
+        color: @sider-menu-color;
+        background: transparent;
       }
 
       .ant-menu-root {
@@ -188,10 +195,11 @@
     overflow: auto;
     height: 100vh;
     transition: @transition-ease-out;
+    background-color: #3c4452;
 
     :global {
       .content-inner {
-        background: #fff;
+        background: @main-center-bgcolor;
         padding: 24px;
         box-shadow: @shadow-1;
         min-height: e("calc(100vh - 184px)");
@@ -205,13 +213,121 @@
     .content {
       min-height: e("calc(100vh - 184px)");
       position: relative;
+      // background: @main-center-bgcolor;
+    }
+
+  }
+
+
+  &.light {
+    .main {
+      background-color: transparent;
+      :global {
+        .content-inner, .contentInner {
+          background: #fff;
+        }
+        .ant-card {
+          background: #fff;
+        }
+      }
+    }
+  }
+
+  &:not(.light) {
+    :global {
+      .ant-table {
+        .ant-table-thead > tr > th {
+          background-color: transparent;
+          vertical-align: bottom;
+          border-bottom: 1px solid @border-color;
+        }
+        .ant-table-tbody > tr > td {
+          border-bottom: 1px solid @border-color;
+        }
+
+        .ant-table-tbody > tr:hover > td {
+          background-color: rgba(0,0,0,.1)!important
+        }
+        &.ant-table-small {
+          .ant-table-thead > tr > th {
+            background: none;
+          }
+        }
+
+        &.ant-table-bordered {
+          .ant-table-thead > tr > th, .ant-table-tbody > tr > td {
+            border-color: @border-color;
+          }
+          .ant-table-header > table, .ant-table-body > table, .ant-table-fixed-left table, .ant-table-fixed-right table {
+            border-color: @border-color;
+          }
+          &.ant-table-empty .ant-table-placeholder{
+            background: rgba(0,0,0,.1);
+            border-color: @border-color;
+            color: inherit;
+          }
+        }
+      }
+
+      .ant-card {
+        background-color: @main-center-bgcolor;
+        .ant-card-head-title {
+          color: @text-color-title;
+        }
+        .ant-card-head {
+          border-color: @border-color;
+          background: transparent;
+        }
+
+        &.ant-card-bordered {
+          border-color: @border-color;
+        }
+
+        &:not(.ant-card-no-hovering):hover {
+          -webkit-box-shadow: 4px 4px 40px rgba(255,255,255, 0.1);
+          box-shadow: 4px 4px 40px rgba(255,255,255, 0.1);
+          border-color: transparent;
+        }
+      }
+
+      .ant-pagination {
+        .ant-pagination-item, .ant-pagination-prev .ant-pagination-item-link, .ant-pagination-next .ant-pagination-item-link {
+          background-color: rgba(0,0,0,.1) !important;
+          border-color: @border-color;
+        }
+        .ant-pagination-disabled a, .ant-pagination-disabled:hover a, .ant-pagination-disabled:focus a, .ant-pagination-disabled .ant-pagination-item-link, .ant-pagination-disabled:hover .ant-pagination-item-link, .ant-pagination-disabled:focus .ant-pagination-item-link {
+          color: #666;
+        }
+        .ant-pagination-options-quick-jumper input {
+          background-color: rgba(0,0,0,.1) !important;
+          border-color: @border-color
+        }
+        .ant-pagination-jump-prev:after, .ant-pagination-jump-next:after {
+          color: inherit;
+        }
+      }
+
+      .ant-input {
+        background-color: rgba(0,0,0,.1);
+        border-color: @border-color;
+      }
+      .ant-cascader-picker {
+        background-color: rgba(0,0,0,.1) !important;
+      }
+      .ant-select-selection {
+        background-color: rgba(0,0,0,.1) !important;
+        border-color: @border-color;
+      }
+      .ant-select-arrow {
+        color: @text-color-base;
+      }
     }
   }
 }
 
 :global .ant-menu-dark {
-  color: #999;
-  background-color: #3e3e3e;
+  // color: @sider-menu-color;
+  // background-color: #3e3e3e;
 
   .ant-menu-submenu-title:hover,
   .ant-menu-submenu:hover {
@@ -219,21 +335,29 @@
   }
 
   .ant-menu-sub {
-    color: #999;
+    color: @sider-menu-color;
   }
 
   .ant-menu-submenu-selected {
-    color: @primary-color;
+    color: @sider-menu-selected-color;
+
+    & > .ant-menu-submenu-title > span > .anticon {
+      color: @primary-color;
+    }
 
     &:not(.ant-menu-submenu-open) {
       background-color: @dark-half;
     }
   }
 
+  & > .ant-menu-submenu-selected {
+    border-left: 2px solid #fb9678;
+  }
+
   .ant-menu-item,
   .ant-menu-submenu-title {
     & > a {
-      color: #999;
+      color: @sider-menu-color;
     }
 
     &:hover > a {
@@ -248,11 +372,15 @@
   }
 
   .ant-menu-item-selected {
-    color: @primary-color;
+    color: @sider-menu-selected-color;
     background-color: @dark-half;
 
     & > a {
-      color: @primary-color;
+      color: @sider-menu-selected-color;
+
+      & > i {
+        color: @primary-color;
+      }
     }
 
     &:hover {

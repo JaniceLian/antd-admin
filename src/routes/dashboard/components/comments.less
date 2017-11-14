@@ -18,11 +18,11 @@
 
   .content {
     text-align: left;
-    color: #757575;
+    color: @text-color-base;
   }
 
   .date {
-    color: #a3a3a3;
+    color: #98a6ad;
     line-height: 30px;
   }
 
@@ -33,11 +33,23 @@
 
   .name {
     font-size: 14px;
-    color: #474747;
+    color: #01c0c8;
     text-align: left;
   }
 
   .avatarcolumn {
     vertical-align: top;
   }
+}
+
+.light {
+  .comments {
+    .content {
+      color: #757575;
+    }
+    .date {
+      color: #a3a3a3;
+    }
+  }
+
 }

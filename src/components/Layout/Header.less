@@ -1,13 +1,6 @@
 @import "~themes/vars";
 
 .header {
-  :global .ant-menu-horizontal {
-    & > .ant-menu-submenu {
-      float: right;
-    }
-    border: none;
-    display: inline-block;
-  }
   box-shadow: @shadow-2;
   position: relative;
   display: flex;
@@ -15,6 +8,27 @@
   height: 47px;
   background-color: #fff;
   z-index: 999;
+
+  :global {
+    .ant-menu-horizontal {
+      & > .ant-menu-submenu {
+        float: right;
+      }
+      border: none;
+      display: inline-block;
+    }
+  }
+  
+  &:not(.light) {
+    color: #fff;
+    background-color: #4c5667;
+    :global {
+      .ant-menu-horizontal {
+        background: transparent;
+        color: #fff;
+      }
+    }
+  }
 
   .rightWarpper {
     display: flex;

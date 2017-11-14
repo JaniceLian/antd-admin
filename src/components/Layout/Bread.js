@@ -3,10 +3,10 @@ import PropTypes from 'prop-types'
 import { Breadcrumb, Icon } from 'antd'
 import { Link } from 'react-router-dom'
 import pathToRegexp from 'path-to-regexp'
-import { queryArray } from 'utils'
+import { classnames, queryArray } from 'utils'
 import styles from './Bread.less'
 
-const Bread = ({ menu, location }) => {
+const Bread = ({ menu, location, darkTheme }) => {
   // 匹配当前路由
   let pathArray = []
   let current
@@ -57,7 +57,7 @@ const Bread = ({ menu, location }) => {
   })
 
   return (
-    <div className={styles.bread}>
+    <div className={classnames(styles.bread, { [styles.light]: !darkTheme })}>
       <Breadcrumb>
         {breads}
       </Breadcrumb>

@@ -7,7 +7,7 @@ import Menus from './Menu'
 
 const SubMenu = Menu.SubMenu
 
-const Header = ({ user, logout, switchSider, siderFold, isNavbar, menuPopoverVisible, location, switchMenuPopover, navOpenKeys, changeOpenKeys, menu }) => {
+const Header = ({ user, logout, switchSider, siderFold, isNavbar, menuPopoverVisible, location, switchMenuPopover, darkTheme, navOpenKeys, changeOpenKeys, menu }) => {
   let handleClickMenu = e => e.key === 'logout' && logout()
   const menusProps = {
     menu,
@@ -20,7 +20,7 @@ const Header = ({ user, logout, switchSider, siderFold, isNavbar, menuPopoverVis
     changeOpenKeys,
   }
   return (
-    <div className={styles.header}>
+    <div className={classnames(styles.header, {[styles.light]:!darkTheme})}>
       {isNavbar
         ? <Popover placement="bottomLeft" onVisibleChange={switchMenuPopover} visible={menuPopoverVisible} overlayClassName={styles.popovermenu} trigger="click" content={<Menus {...menusProps} />}>
           <div className={styles.button}>

@@ -3,6 +3,7 @@
 body {
   height: 100%;
   overflow-y: hidden;
+  color: #96a2b4;
   background-color: #f8f8f8;
 }
 
@@ -16,12 +17,26 @@ body {
 }
 
 :global {
+  h1, h2, h3, h4, h5, h6 {
+    color: @text-color-title;
+  }
   .ant-breadcrumb {
+    font-size: 13px;
+    a {
+      &:hover {
+        color: @primary-color;
+      }
+    }
+
     & > span {
       &:last-child {
-        color: #999;
+        color: @primary-color;
         font-weight: normal;
       }
+    }
+
+    .ant-breadcrumb-separator {
+      color: inherit;
     }
   }
 
@@ -32,7 +47,11 @@ body {
   }
 
   .ant-table {
+    color: @text-color-base;
+
     .ant-table-thead > tr > th {
+      color: inherit;
+      font-weight: 600;
       text-align: center;
     }
 

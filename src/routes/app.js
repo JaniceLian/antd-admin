@@ -41,6 +41,7 @@ const App = ({ children, dispatch, app, loading, location }) => {
     siderFold,
     isNavbar,
     menuPopoverVisible,
+    darkTheme,
     navOpenKeys,
     switchMenuPopover () {
       dispatch({ type: 'app/switchMenuPopver' })
@@ -74,6 +75,7 @@ const App = ({ children, dispatch, app, loading, location }) => {
   const breadProps = {
     menu,
     location,
+    darkTheme,
   }
   if (openPages && openPages.includes(pathname)) {
     return (<div>
@@ -91,19 +93,19 @@ const App = ({ children, dispatch, app, loading, location }) => {
         {iconFontJS && <script src={iconFontJS} />}
         {iconFontCSS && <link rel="stylesheet" href={iconFontCSS} />}
       </Helmet>
-      <div className={classnames(styles.layout, { [styles.fold]: isNavbar ? false : siderFold }, { [styles.withnavbar]: isNavbar })}>
+      <div className={classnames(styles.layout, { [styles.fold]: isNavbar ? false : siderFold }, { [styles.light]: !darkTheme}, { [styles.withnavbar]: isNavbar })}>
         {!isNavbar ? <aside className={classnames(styles.sider, { [styles.light]: !darkTheme })}>
           {siderProps.menu.length === 0 ? null : <Sider {...siderProps} />}
         </aside> : ''}
         <div className={styles.main}>
           <Header {...headerProps} />
-          <Bread {...breadProps} />
-          <div className={styles.container}>
+          <Bread {...breadProps}/>
+          <div className={classnames(styles.container, {[styles.light]: !darkTheme})}>
             <div className={styles.content}>
               {hasPermission ? children : <Error />}
             </div>
           </div>
-          <Footer />
+          <Footer darkTheme={darkTheme}/>
         </div>
       </div>
     </div>

@@ -14,7 +14,7 @@ export default class Page extends Component {
     return (
       <div
         className={classnames(className, {
-          [styles.contentInner]: inner,
+          ['contentInner']: inner,
         })}
         style={loading ? loadingStyle : null}
       >
